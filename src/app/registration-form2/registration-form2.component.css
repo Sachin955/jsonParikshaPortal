@@ -15,12 +15,13 @@
 }
 .submit-btn {
     padding: 3px 0 3px 0;
-    background-color: lightblue;
+    background-color: rgb(187, 212, 221);
     color: white;
     border-radius: 4px;
     font-weight: bold;
     font-size:larger;
 }
+
 
 small {
     color: red;

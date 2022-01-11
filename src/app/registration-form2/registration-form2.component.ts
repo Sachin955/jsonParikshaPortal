@@ -14,7 +14,7 @@ export class RegistrationForm2Component implements OnInit {
  
   formTitle: any = 'New Candidate Registration Form';
 
-  constructor(private http: HttpClient, private _fb: FormBuilder,
+  constructor(private http: HttpClient, private _fb: FormBuilder, router:Router
    ) {}
 
   ngOnInit(): void {
@@ -30,15 +30,21 @@ export class RegistrationForm2Component implements OnInit {
       this.createFormControl()
     });
 
-   ;
+   
   }
 
   // create formControl dynamically based on dbData
   onSubmit() {
-    console.log(this.registrationForm);
+    console.log(this.registrationForm.valid)
+    // this.http.post<any>('http://localhost:3000/signup',this.registrationForm.value)
+    // .subscribe((postData)=>{
+    // console.log(postData)
+    // this.registrationForm.reset()
+    
+    // })
      
   }
-
+  
   createFormControl(){
     this.dbData.forEach((element:any) => {
       if(element.Component_Required === true){

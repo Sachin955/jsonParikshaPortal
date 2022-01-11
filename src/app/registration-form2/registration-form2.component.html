@@ -4,8 +4,8 @@
   </div>
 
   <form id="myForm2" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-    <div class="row form">
-      <div class="col-md-12" *ngFor="let control of dbData">
+    <div>
+      <div *ngFor="let control of dbData">
         <div [ngSwitch]="control.Component_Type">
           <div *ngSwitchCase="'text'">
             <div class="label">
@@ -22,206 +22,23 @@
               <div
                 *ngIf="
                   registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
+                  !registrationForm.get(control.Component_ID).valid
                 "
               >
                 <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
+                  *ngIf="registrationForm.get(control.Component_ID).errors?.required"
                 >
                   {{ control.Component_Label }} is required
                 </small>
               </div>
             </div>
           </div>
-
-          <div *ngSwitchCase="'password'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <input
-                type="{{ control.Component_Type }}"
-                class="form-control"
-                [formControlName]="control.Component_ID"
-              />
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'email'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <input
-                type="{{ control.Component_Type }}"
-                class="form-control"
-                [formControlName]="control.Component_ID"
-              />
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'contact'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <input
-                type="{{ control.Component_Type }}"
-                class="form-control"
-                [formControlName]="control.Component_ID"
-              />
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'date'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <input
-                type="{{ control.Component_Type }}"
-                class="form-control"
-                [formControlName]="control.Component_ID"
-              />
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'radio'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              
-             <label *ngFor="let val of control.Component_value.split(',')" 
-             >
-               <input type={{control.Component_Type}} name="{{control.Component_ID}}">
-               {{val}} 
-             </label>
-              
-              
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'select'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <select class="form-control" [formControlName] = "control.Component_ID">
-                <!-- <option value="-1"> Select</option> -->
-                <option *ngFor="let val of control.Component_value.split(',')" value="{{val}}" >{{val}}</option>
-              </select>
-                           
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
-          <div *ngSwitchCase="'checkbox'">
-            <div class="label">
-              <label
-                ><h6>{{ control.Component_Label }}</h6></label
-              >
-            </div>
-            <div>
-              <div class="undertakingBox">
-                <p>Accept terms:</p>
-                <input type={{control.Component_Type}} value="">
-                 I agree to the Term of services.
-              </div>
-             
-                           
-              <div
-                *ngIf="
-                  registrationForm.get(control.Component_ID).touched &&
-                  registrationForm.get(control.Component_ID).invalid
-                "
-              >
-                <small
-                  *ngIf="!registrationForm.get(control.Component_ID).required"
-                >
-                  {{ control.Component_Label }} is required
-                </small>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
     <br />
     <div class="row">
-      <button type="submit" class="submit-btn" [disabled]="registrationForm.valid">Submit</button>
+      <button class="form-control">Submit</button>
     </div>
   </form>
 </div>
